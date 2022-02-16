@@ -1,7 +1,12 @@
 import { StatusBar } from "expo-status-bar";
-
+import {
+  useDeviceOrientation,
+  useDimensions,
+} from "@react-native-community/hooks";
+import huzaifah from "./assets/huzaifah.jpg";
 import {
   StyleSheet,
+  Dimensions,
   Text,
   View,
   SafeAreaView,
@@ -11,21 +16,47 @@ import {
   TouchableHighlight,
   Button,
   Alert,
+  Platform,
 } from "react-native";
 
 export default function App() {
+  console.log(useDimensions());
+  console.log(useDeviceOrientation());
+
   return (
     <SafeAreaView style={styles.container}>
-      <Text
+      <View
         style={{
-          fontFamily: "sans-serif",
-          fontSize: "40px",
-          textAlign: "center",
+          backgroundColor: "#F8F8F8",
+          flex: 1,
+          flexDirection: "row",
+          width: 400,
+          height: 200,
         }}
-        numberOfLines={2}
+      />
+
+      <View
+        style={{
+          backgroundColor: "#373A4E",
+          flexDirection: "row",
+          flex: 1,
+          width: 400,
+          height: 200,
+        }}
+      />
+      <View
+        style={{
+          backgroundColor: "#FFBD00",
+          flex: 1,
+          width: 400,
+          flexDirection: "row",
+          height: 100,
+        }}
+      />
+      <Text
+        numberOfLines={1}
       >
-        {" "}
-        Asalamu alaikum Huzaifah
+        Huzaifah how are you?
       </Text>
 
       <TouchableHighlight
@@ -37,24 +68,31 @@ export default function App() {
           style={{
             resizeMode: "cover",
             height: 200,
-            width: 300,
-            borderRadius: 75,
+            width: 200,
+            justifyContent: "center",
+            borderRadius: 95,
           }}
-          source={require("./assets/huzaifah.jpg")}
-          // source={{
-          //
-          //   uri: "https://thequranclasses.online/wp-content/uploads/2020/12/Learn-Quran-for-Kids-The-Quran-Classes.png",
-          // }}
+          source={huzaifah}
         />
       </TouchableHighlight>
       <Button
+        color="blue"
         title="Log in"
         onPress={() =>
-          Alert.prompt("Mom says:", "You've done it", (text) =>
+          Alert.alert("Mom says:", "You've done it", (text) =>
             console.log(text)
           )
         }
       />
+
+      {/* <Image
+        source={{
+          width: 10,
+          height: 10,
+          uri: "https://thequranclasses.online/wp-content/uploads/2020/12/Learn-Quran-for-Kids-The-Quran-Classes.png",
+        }}
+      /> */}
+
       {/* <StatusBar style="auto" /> */}
     </SafeAreaView>
   );
@@ -63,9 +101,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ef233c",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: "#f1faee",
+    paddingTop: Platform.OS === "ios" ? 20 : 0,
   },
 });
 
